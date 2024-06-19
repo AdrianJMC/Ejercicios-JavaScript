@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividades en JavaScript</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        // 1. Invertir una Cadena
+        function invertirCadena(cadena) {
+            return cadena.split('').reverse().join('');
+        }
+
+        // 2. Número Primo
+        function esNumeroPrimo(numero) {
+            if (numero <= 1) return false;
+            for (let i = 2; i < numero; i++) {
+                if (numero % i === 0) return false;
+            }
+            return true;
+        }
+
+        // 3. Eliminar Duplicados en un Arreglo
+        function eliminarDuplicados(arr) {
+            return [...new Set(arr)];
+        }
+
+        // 4. Factorial de un Número
+        function factorial(numero) {
+            if (numero < 0) return -1;
+            if (numero === 0) return 1;
+            return numero * factorial(numero - 1);
+        }
+
+        // 5. Contar Vocales
+        function contarVocales(cadena) {
+            let contador = 0;
+            const vocales = 'aeiouAEIOU';
+            for (let char of cadena) {
+                if (vocales.includes(char)) {
+                    contador++;
+                }
+            }
+            return contador;
+        }
+
+        // 6. Sumar los Números de un Arreglo
+        function sumarNumeros(arr) {
+            return arr.reduce((acumulador, numero) => acumulador + numero, 0);
+        }
+
+        // 7. Buscar el Máximo en un Arreglo
+        function buscarMaximo(arr) {
+            return Math.max(...arr);
+        }
+
+        // Función para mostrar resultados
+        function mostrarResultados() {
+            let allFieldsFilled = true;
+
+            // Validar y procesar cada campo
+            const cadena = document.getElementById('cadena').value;
+            if (cadena === "") {
+                allFieldsFilled = false;
+            } else {
+                document.getElementById('resultadoInvertirCadena').innerText = invertirCadena(cadena);
+            }
+
+            const numeroPrimo = document.getElementById('numeroPrimo').value;
+            if (numeroPrimo === "") {
+                allFieldsFilled = false;
+            } else {
+                document.getElementById('resultadoEsNumeroPrimo').innerText = esNumeroPrimo(parseInt(numeroPrimo));
+            }
+
+            const arrayDuplicados = document.getElementById('arrayDuplicados').value;
+            if (arrayDuplicados === "") {
+                allFieldsFilled = false;
+            } else {
+                document.getElementById('resultadoEliminarDuplicados').innerText = eliminarDuplicados(arrayDuplicados.split(',').map(Number)).join(', ');
+            }
+
+            const numeroFactorial = document.getElementById('numeroFactorial').value;
+            if (numeroFactorial === "") {
+                allFieldsFilled = false;
+            } else {
+                document.getElementById('resultadoFactorial').innerText = factorial(parseInt(numeroFactorial));
+            }
+
+            const cadenaVocales = document.getElementById('cadenaVocales').value;
+            if (cadenaVocales === "") {
+                allFieldsFilled = false;
+            } else {
+                document.getElementById('resultadoContarVocales').innerText = contarVocales(cadenaVocales);
+            }
+
+            const arraySumar = document.getElementById('arraySumar').value;
+            if (arraySumar === "") {
+                allFieldsFilled = false;
+            } else {
+                document.getElementById('resultadoSumarNumeros').innerText = sumarNumeros(arraySumar.split(',').map(Number));
+            }
+
+            const arrayMaximo = document.getElementById('arrayMaximo').value;
+            if (arrayMaximo === "") {
+                allFieldsFilled = false;
+            } else {
+                document.getElementById('resultadoBuscarMaximo').innerText = buscarMaximo(arrayMaximo.split(',').map(Number));
+            }
+
+
+            if (!allFieldsFilled) {
+                alert("Por favor, completa todos los campos solicitados.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Actividades en JavaScript</h1>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">1. Invertir una Cadena</h5>
+                <div class="form-group">
+                    <label for="cadena">Cadena:</label>
+                    <input type="text" class="form-control" id="cadena">
+                </div>
+                <div class="mt-2"><strong>Resultado:</strong> <span id="resultadoInvertirCadena"></span></div>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">2. Número Primo</h5>
+                <div class="form-group">
+                    <label for="numeroPrimo">Número:</label>
+                    <input type="number" class="form-control" id="numeroPrimo">
+                </div>
+                <div class="mt-2"><strong>Resultado:</strong> <span id="resultadoEsNumeroPrimo"></span></div>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">3. Eliminar Duplicados en un Arreglo</h5>
+                <div class="form-group">
+                    <label for="arrayDuplicados">Arreglo (separado por comas):</label>
+                    <input type="text" class="form-control" id="arrayDuplicados" placeholder="Ej: 1,2,2,3,4,4,5">
+                </div>
+                <div class="mt-2"><strong>Resultado:</strong> <span id="resultadoEliminarDuplicados"></span></div>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">4. Factorial de un Número</h5>
+                <div class="form-group">
+                    <label for="numeroFactorial">Número:</label>
+                    <input type="number" class="form-control" id="numeroFactorial">
+                </div>
+                <div class="mt-2"><strong>Resultado:</strong> <span id="resultadoFactorial"></span></div>
+                <p>El factorial de un número es el producto de todos los enteros positivos desde 1 hasta ese número. Por ejemplo, el factorial de 5 es 5! = 5 × 4 × 3 × 2 × 1 = 120.</p>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">5. Contar Vocales</h5>
+                <div class="form-group">
+                    <label for="cadenaVocales">Cadena:</label>
+                    <input type="text" class="form-control" id="cadenaVocales">
+                </div>
+                <div class="mt-2"><strong>Resultado:</strong> <span id="resultadoContarVocales"></span></div>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">6. Sumar los Números de un Arreglo</h5>
+                <div class="form-group">
+                    <label for="arraySumar">Arreglo (separado por comas):</label>
+                    <input type="text" class="form-control" id="arraySumar" placeholder="Ej: 1,2,3,4,5">
+                </div>
+                <div class="mt-2"><strong>Resultado:</strong> <span id="resultadoSumarNumeros"></span></div>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">7. Buscar el Máximo en un Arreglo</h5>
+                <div class="form-group">
+                    <label for="arrayMaximo">Arreglo (separado por comas):</label>
+                    <input type="text" class="form-control" id="arrayMaximo" placeholder="Ej: 1,2,3,4,5">
+                </div>
+                <div class="mt-2"><strong>Resultado:</strong> <span id="resultadoBuscarMaximo"></span></div>
+            </div>
+        </div>
+        <button class="btn btn-primary btn-block mt-4" onclick="mostrarResultados()">Calcular</button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
